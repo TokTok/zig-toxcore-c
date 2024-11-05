@@ -1,14 +1,14 @@
-load("@rules_zig//zig:defs.bzl", "zig_binary", "zig_library", "zig_package", "zig_test")
+load("@rules_zig//zig:defs.bzl", "zig_binary", "zig_library", "zig_module", "zig_test")
 load("//tools/project:build_defs.bzl", "project")
 
 project(license = "gpl3-https")
 
-zig_package(
+zig_module(
     name = "sodium",
     main = "src/sodium.zig",
 )
 
-zig_package(
+zig_module(
     name = "tox",
     srcs = [
         "src/friend.zig",
@@ -23,13 +23,14 @@ zig_library(
     name = "zig-toxcore-c",
     cdeps = [
         "//c-toxcore",
+        "@libsodium",
         "@rules_zig//zig/lib:libc",
     ],
     main = "src/tox.zig",
     deps = [":tox"],
 )
 
-zig_package(
+zig_module(
     name = "node_info",
     srcs = [
         "apps/BootNode.zig",
@@ -46,6 +47,7 @@ zig_package(
     name = app,
     cdeps = [
         "//c-toxcore",
+        "@libsodium",
         "@rules_zig//zig/lib:libc",
     ],
     main = "apps/%s.zig" % app,

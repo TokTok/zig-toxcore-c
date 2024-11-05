@@ -19,12 +19,20 @@ const log = std.log.scoped(.tox);
 pub fn versionMajor() u32 {
     return c.tox_version_major();
 }
+test "major version should be 0" {
+    try std.testing.expectEqual(versionMajor(), 0);
+}
+
 /// The minor version number.
 /// Incremented when functionality is added without  breaking the API or ABI.
 /// Set to 0 when the major version number is incremented.
 pub fn versionMinor() u32 {
     return c.tox_version_minor();
 }
+test "minor version should not be 0" {
+    try std.testing.expect(versionMinor() != 0);
+}
+
 /// The patch or revision number.
 /// Incremented when bugfixes are applied without changing any functionality or
 /// API or ABI.
@@ -744,5 +752,5 @@ test {
 }
 
 test "String test" {
-    // try std.testing.expectEqualStrings("Hi", "Hi");
+    try std.testing.expectEqualStrings("Hi", "Hi");
 }
