@@ -14,6 +14,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  common:
+    uses: TokTok/ci-tools/.github/workflows/common-ci.yml@master
+
   test:
     strategy:
       matrix:
