@@ -4,7 +4,7 @@ const BootNode = @import("BootNode.zig");
 const RespNode = @import("RespNode.zig");
 const QueryNode = @import("QueryNode.zig");
 
-pub const std_options = .{
+pub const std_options: std.Options = .{
     // Set the log level to info
     .log_level = .debug,
 };

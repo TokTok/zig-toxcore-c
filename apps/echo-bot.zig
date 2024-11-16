@@ -5,7 +5,7 @@ const sodium = @import("sodium");
 const bytesToHexBuf = Tox.hex.bytesToHexBuf;
 const hexToBytes = std.fmt.hexToBytes;
 
-pub const std_options = .{
+pub const std_options: std.Options = .{
     // Set the log level to info
     .log_level = .debug,
 };
