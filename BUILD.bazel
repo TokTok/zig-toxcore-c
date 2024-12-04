@@ -6,6 +6,7 @@ project(license = "gpl3-https")
 zig_module(
     name = "sodium",
     main = "src/sodium.zig",
+    tags = ["no-windows"],
 )
 
 zig_module(
@@ -16,6 +17,7 @@ zig_module(
         "src/wrap.zig",
     ],
     main = "src/tox.zig",
+    tags = ["no-windows"],
     deps = [":sodium"],
 )
 
@@ -27,6 +29,7 @@ zig_library(
         "@rules_zig//zig/lib:libc",
     ],
     main = "src/tox.zig",
+    tags = ["no-windows"],
     deps = [":tox"],
 )
 
@@ -40,6 +43,7 @@ zig_module(
         "apps/RespNode.zig",
     ],
     main = "src/tox.zig",
+    tags = ["no-windows"],
     deps = [":sodium"],
 )
 
@@ -51,6 +55,7 @@ zig_module(
         "@rules_zig//zig/lib:libc",
     ],
     main = "apps/%s.zig" % app,
+    tags = ["no-windows"],
     deps = [
         ":node_info",
         ":sodium",
@@ -71,5 +76,6 @@ zig_module(
         "@rules_zig//zig/lib:libc",
     ],
     main = src,
+    tags = ["no-windows"],
     deps = [":tox"],
 ) for src in glob(["src/*.zig"])]
